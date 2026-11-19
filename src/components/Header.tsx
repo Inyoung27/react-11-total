@@ -8,10 +8,12 @@ import {
     FaMoon,
     FaRocket,
     FaShoppingBag,
+    FaSun,
 } from "react-icons/fa";
 import styled from "styled-components";
 import { NavLink } from "react-router";
 import type { ReactNode } from "react";
+import { useThemeMode } from "../context/ThemeModeContext.tsx";
 
 type MenuItem = {
     path: string;
@@ -35,8 +37,8 @@ const Wrap = styled.header`
     justify-content: space-between;
     height: 70px;
     padding: 0 40px;
-    background-color: white;
-    border-bottom: 1px solid #e5e7eb;
+    background-color: ${props => props.theme.card};
+    border-bottom: 1px solid ${props => props.theme.border};
 `;
 
 const Logo = styled(NavLink)`
@@ -45,10 +47,10 @@ const Logo = styled(NavLink)`
     gap: 8px;
     font-size: 1.4rem;
     font-weight: 800;
-    color: #1f2937;
+    color: ${props => props.theme.text};
 
     svg {
-        color: #1a73d9;
+        color: ${props => props.theme.primary};
     }
 `;
 
@@ -64,16 +66,16 @@ const Menu = styled(NavLink)`
     padding: 10px 16px;
     border-radius: 8px;
     font-weight: 600;
-    color: #6b7280;
+    color: ${props => props.theme.subText};
     transition: all 0.2s;
 
     &:hover {
-        background-color: #f3f4f6;
+        background-color: ${props => props.theme.hoverBg};
     }
 
     &.active {
-        background-color: #eaf3ff;
-        color: #1a73d9;
+        background-color: ${props => props.theme.activeBg};
+        color: ${props => props.theme.primary};
     }
 `;
 
@@ -82,9 +84,10 @@ const ThemeButton = styled.button`
     align-items: center;
     gap: 8px;
     padding: 10px 18px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid ${props => props.theme.border};
     border-radius: 999px;
-    background-color: #f9fafb;
+    background-color: ${props => props.theme.background};
+    color: ${props => props.theme.text};
     font-weight: 600;
     cursor: pointer;
 
@@ -94,7 +97,9 @@ const ThemeButton = styled.button`
 `;
 
 function Header() {
-    return(
+    const { mode, toggleTheme } = useThemeMode();
+
+    return (
         <Wrap>
             <Logo to={"/"}>
                 <FaRocket />
@@ -108,9 +113,9 @@ function Header() {
                     </Menu>
                 ))}
             </Nav>
-            <ThemeButton>
-                <FaMoon />
-                DarkMode
+            <ThemeButton onClick={toggleTheme}>
+                {mode === "dark" ? <FaSun /> : <FaMoon />}
+                {mode === "dark" ? "Light Mode" : "Dark Mode"}
             </ThemeButton>
         </Wrap>
     );
