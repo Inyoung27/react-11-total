@@ -1,19 +1,14 @@
-import { Link, Outlet } from "react-router";
+import { Outlet } from "react-router";
+import Header from "../components/Header.tsx";
 
 function MainLayout () {
   return (
-    <div>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/todo">Todo</Link>
-        <Link to="/coin">Coin</Link>
-        <Link to="/board">Board</Link>
-        <Link to="/product">Product</Link>
-        <Link to="/book">Book</Link>
-        <Link to="/movie">Movie</Link>
-      </nav>
-      <Outlet />
-    </div>
+    <>
+      <Header />
+        <main>
+            <Outlet />
+        </main>
+    </>
   );
 }
 
