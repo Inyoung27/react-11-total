@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { FaBitcoin } from "react-icons/fa";
+import { Message } from "../styles/commonStyle.ts";
 
 type Coin = {
     id: string;
@@ -146,12 +147,6 @@ const StatLabel = styled.div`
 const StatValue = styled.div`
     font-size: 1.3rem;
     font-weight: 800;
-`;
-
-const Message = styled.div`
-    padding: 100px;
-    text-align: center;
-    color: ${props => props.theme.subText};
 `;
 
 function CoinPage() {

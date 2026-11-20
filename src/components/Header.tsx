@@ -1,5 +1,6 @@
+import { NavLink } from "react-router";
+import styled from "styled-components";
 import {
-    FaBitcoin,
     FaBook,
     FaCheckSquare,
     FaClipboardList,
@@ -10,8 +11,7 @@ import {
     FaShoppingBag,
     FaSun,
 } from "react-icons/fa";
-import styled from "styled-components";
-import { NavLink } from "react-router";
+import { FaBitcoin } from "react-icons/fa6";
 import type { ReactNode } from "react";
 import { useThemeMode } from "../context/ThemeModeContext.tsx";
 
@@ -19,7 +19,7 @@ type MenuItem = {
     path: string;
     label: string;
     icon: ReactNode;
-}
+};
 
 const MENUS: MenuItem[] = [
     { path: "/", label: "Home", icon: <FaHome /> },
@@ -35,14 +35,20 @@ const Wrap = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
     height: 70px;
     padding: 0 40px;
     background-color: ${props => props.theme.card};
     border-bottom: 1px solid ${props => props.theme.border};
+
+    @media (max-width: 900px) {
+        padding: 0 16px;
+    }
 `;
 
 const Logo = styled(NavLink)`
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     gap: 8px;
     font-size: 1.4rem;
@@ -52,15 +58,28 @@ const Logo = styled(NavLink)`
     svg {
         color: ${props => props.theme.primary};
     }
+    
+    span {
+        @media (max-width: 700px) {
+            display: none;
+        }
+    }
 `;
 
 const Nav = styled.nav`
     display: flex;
     gap: 8px;
+    min-width: 0;
+    overflow-x: auto;
+
+    @media (max-width: 900px) {
+        gap: 4px;
+    }
 `;
 
 const Menu = styled(NavLink)`
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     gap: 8px;
     padding: 10px 16px;
@@ -77,10 +96,23 @@ const Menu = styled(NavLink)`
         background-color: ${props => props.theme.activeBg};
         color: ${props => props.theme.primary};
     }
+    
+    @media (max-width: 1000px) {
+        padding: 10px 12px;
+
+        span {
+            display: none;
+        }
+    }
+
+    @media (max-width: 500px) {
+        padding: 10px;
+    }
 `;
 
 const ThemeButton = styled.button`
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     gap: 8px;
     padding: 10px 18px;
@@ -94,6 +126,14 @@ const ThemeButton = styled.button`
     svg {
         color: #f59e0b;
     }
+
+    @media (max-width: 1000px) {
+        padding: 10px 12px;
+
+        span {
+            display: none;
+        }
+    }
 `;
 
 function Header() {
@@ -101,21 +141,23 @@ function Header() {
 
     return (
         <Wrap>
-            <Logo to={"/"}>
+            <Logo to="/">
                 <FaRocket />
-                My Universe
+                <span>My Universe</span>
             </Logo>
+
             <Nav>
                 {MENUS.map(menu => (
-                    <Menu key={menu.path} to={menu.path} end={menu.path === "/"}>
+                    <Menu key={menu.path} to={menu.path} end={menu.path === "/"} title={menu.label}>
                         {menu.icon}
-                        {menu.label}
+                        <span>{menu.label}</span>
                     </Menu>
                 ))}
             </Nav>
+
             <ThemeButton onClick={toggleTheme}>
                 {mode === "dark" ? <FaSun /> : <FaMoon />}
-                {mode === "dark" ? "Light Mode" : "Dark Mode"}
+                <span>{mode === "dark" ? "Light Mode" : "Dark Mode"}</span>
             </ThemeButton>
         </Wrap>
     );
