@@ -31,12 +31,6 @@ const PROJECTS: Project[] = [
         icon: <FaBitcoin />,
     },
     {
-        path: "/movie",
-        title: "무비검색앱",
-        desc: "영화 데이터베이스 API를 활용한 영화 검색",
-        icon: <FaFilm />,
-    },
-    {
         path: "/board",
         title: "게시판",
         desc: "기본적인 커뮤니티 게시판",
@@ -53,6 +47,12 @@ const PROJECTS: Project[] = [
         title: "구글북스 검색앱",
         desc: "구글 도서 데이터를 활용한 온라인 책 검색",
         icon: <FaBook />,
+    },
+    {
+        path: "/movie",
+        title: "무비검색앱",
+        desc: "영화 데이터베이스 API를 활용한 영화 검색",
+        icon: <FaFilm />,
     },
 ];
 

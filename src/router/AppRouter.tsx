@@ -9,6 +9,10 @@ import Board from "../pages/Board.tsx";
 import Product from "../pages/Product.tsx";
 import ProductDetail from "../pages/ProductDetail.tsx";
 import BoardDetail from "../pages/BoardDetail.tsx";
+import BookDetail from "../pages/BookDetail.tsx";
+import BookSearch from "../pages/BookSearch.tsx";
+import MovieDetail from "../pages/MovieDetail.tsx";
+import MovieSearch from "../pages/MovieSearch.tsx";
 
 const routes: RouteObject[] = [
     {
@@ -22,10 +26,12 @@ const routes: RouteObject[] = [
             { path: "product", element: <Product /> },
             { path: "book", element: <Book /> },
             { path: "movie", element: <Movie /> },
-            { path: "board", element: <Board /> },
             { path: "board/:id", element: <BoardDetail /> },
-            { path: "product", element: <Product /> },
             { path: "product/:id", element: <ProductDetail /> },
+            { path: "book/search", element: <BookSearch /> },
+            { path: "book/detail/:id", element: <BookDetail /> },
+            { path: "movie/search", element: <MovieSearch /> },
+            { path: "movie/detail/:id", element: <MovieDetail /> },
         ],
     },
 ];
